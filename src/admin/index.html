@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Orders — Matane admin</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  body { background: #faf9f7; }
+  .adm { max-width: 1180px; margin: 0 auto; padding: 28px 24px 80px; }
+  .adm-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .adm-head h1 { font-size: 30px; }
+  .adm-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  .adm-tabs button { border: 1px solid var(--line); background: #fff; padding: 8px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+  .adm-tabs button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .adm-tabs .n { color: var(--stone); margin-left: 6px; font-size: 12px; }
+  table.orders { width: 100%; max-width: none; background: #fff; border: 1px solid var(--line); font-size: 14px; }
+  table.orders th, table.orders td { padding: 10px 12px; vertical-align: top; }
+  table.orders tr.row { cursor: pointer; } table.orders tr.row:hover { background: #f5f3ef; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 12px; background: var(--mist); }
+  .pill.paid { background: #fde9c8; } .pill.in_production { background: #dbe7f5; } .pill.shipped { background: #e3f0de; }
+  .pill.delivered { background: #e9e9e9; } .pill.refunded, .pill.cancelled { background: #f7dcdc; }
+  .detail td { background: #fbfaf8; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; padding: 8px 0 14px; }
+  .detail-grid h3 { font-size: 15px; font-family: var(--sans); font-weight: 500; margin-bottom: 6px; }
+  .detail-grid p, .detail-grid li { font-size: 14px; margin: 0 0 4px; }
+  .detail-grid ul { padding-left: 16px; margin: 0; }
+  .edit { display: grid; gap: 8px; }
+  .edit select, .edit input, .edit textarea { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--line); background: #fff; height: auto; background-image: none; }
+  .edit .btn { min-height: 40px; padding: 0 16px; font-size: 14px; }
+  .login { max-width: 420px; margin: 12vh auto; background: #fff; border: 1px solid var(--line); padding: 32px; }
+  .login input { width: 100%; font: inherit; padding: 12px; border: 1px solid var(--line); margin: 12px 0; }
+  .msg { font-size: 14px; color: var(--stone); min-height: 1.4em; }
+  .messages li { background: #fff; border: 1px solid var(--line); padding: 14px 16px; margin-bottom: 10px; list-style: none; }
+  .messages ul { padding: 0; }
+  @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } .hide-sm { display: none; } }
+</style>
+</head>
+<body>
+<div class="adm">
+  <div id="login" class="login" hidden>
+    <h1 style="font-size:26px">Matane admin</h1>
+    <p class="muted small">Enter your admin email and we’ll send you a sign-in link.</p>
+    <form id="loginForm"><input id="email" type="email" required autocomplete="email" placeholder="you@example.com"><button class="btn block" type="submit">Send sign-in link</button></form>
+    <p class="msg" id="loginMsg" role="status"></p>
+  </div>
+
+  <div id="app" hidden>
+    <div class="adm-head"><h1>Orders</h1><div class="small"><span id="who" class="muted"></span> · <button class="linkbtn" id="out">Sign out</button></div></div>
+    <div class="adm-tabs" id="tabs"></div>
+    <table class="orders"><thead><tr><th>Order</th><th>Date</th><th>Customer</th><th class="hide-sm">Pieces</th><th>Total</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table>
+    <p class="msg" id="appMsg" role="status"></p>
+    <h2 style="font-size:24px;margin:48px 0 16px">Messages</h2>
+    <div class="messages"><ul id="messages"></ul></div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from './supabase.js';
+const CFG = window.MATANE_ADMIN || {};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const eur = c => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(c / 100);
+const STATUSES = ['paid', 'in_production', 'shipped', 'delivered', 'refunded', 'cancelled'];
+const LABEL = { paid: 'Paid', in_production: 'In production', shipped: 'Shipped', delivered: 'Delivered', refunded: 'Refunded', cancelled: 'Cancelled' };
+
+if (!CFG.url || !CFG.anonKey) {
+  document.querySelector('.adm').innerHTML = '<p class="login">Admin is not configured yet: set PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in Netlify and redeploy.</p>';
+  throw new Error('not configured');
+}
+const sb = createClient(CFG.url, CFG.anonKey, { auth: { persistSession: true, detectSessionInUrl: true } });
+
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const { error } = await sb.auth.signInWithOtp({ email: $('#email').value, options: { shouldCreateUser: false, emailRedirectTo: location.href.split('#')[0] } });
+  $('#loginMsg').textContent = error ? 'That email can’t sign in here.' : 'Check your inbox for the sign-in link.';
+});
+$('#out').addEventListener('click', async () => { await sb.auth.signOut(); location.reload(); });
+
+let orders = [], filter = 'open', openId = null;
+
+async function load() {
+  const { data, error } = await sb.from('orders').select('*, order_items(*)').order('created_at', { ascending: false }).limit(500);
+  if (error) { $('#appMsg').textContent = 'Your account is not an admin, or the database is unreachable.'; return; }
+  orders = data; render();
+  const m = await sb.from('contact_messages').select('*').order('created_at', { ascending: false }).limit(100);
+  $('#messages').innerHTML = (m.data || []).map(x => `<li><b>${esc(x.name)}</b> &lt;${esc(x.email)}&gt; · ${new Date(x.created_at).toLocaleString('es-ES')}${x.order_number ? ' · ' + esc(x.order_number) : ''}
+    <p style="white-space:pre-wrap;margin:8px 0">${esc(x.message)}</p><a href="mailto:${esc(x.email)}">Reply</a>${x.handled ? ' · handled' : ` · <button class="linkbtn" data-handled="${x.id}">Mark handled</button>`}</li>`).join('') || '<li class="muted">No messages.</li>';
+  document.querySelectorAll('[data-handled]').forEach(b => b.onclick = async () => { await sb.from('contact_messages').update({ handled: true }).eq('id', b.dataset.handled); load(); });
+}
+
+function render() {
+  const groups = { open: o => ['paid', 'in_production'].includes(o.status), shipped: o => o.status === 'shipped', all: () => true, closed: o => ['delivered', 'refunded', 'cancelled'].includes(o.status) };
+  const names = { open: 'To make', shipped: 'Shipped', closed: 'Closed', all: 'All' };
+  $('#tabs').innerHTML = Object.keys(groups).map(k => `<button data-f="${k}" aria-pressed="${k === filter}">${names[k]}<span class="n">${orders.filter(groups[k]).length}</span></button>`).join('');
+  document.querySelectorAll('[data-f]').forEach(b => b.onclick = () => { filter = b.dataset.f; render(); });
+  const list = orders.filter(groups[filter]);
+  $('#rows').innerHTML = list.map(o => {
+    const row = `<tr class="row" data-id="${o.id}"><td><b>${esc(o.order_number)}</b></td><td>${new Date(o.created_at).toLocaleDateString('es-ES')}</td>
+      <td>${esc(o.name || '—')}<br><span class="muted small">${esc(o.email || '')}</span></td>
+      <td class="hide-sm">${o.order_items.map(i => `${i.quantity} × ${esc(i.name)}`).join('<br>')}</td><td>${eur(o.amount_total)}</td>
+      <td><span class="pill ${o.status}">${LABEL[o.status]}</span></td></tr>`;
+    if (o.id !== openId) return row;
+    const a = o.shipping_address || {};
+    return row + `<tr class="detail"><td colspan="6"><div class="detail-grid">
+      <div><h3>Ship to</h3><p>${esc(o.shipping_name || o.name || '')}</p><p>${esc([a.line1, a.line2].filter(Boolean).join(', '))}</p><p>${esc([a.postal_code, a.city, a.state].filter(Boolean).join(' '))}</p><p>${esc(a.country || '')}</p><p>${esc(o.phone || '')}</p></div>
+      <div><h3>Pieces</h3><ul>${o.order_items.map(i => `<li>${i.quantity} × ${esc(i.name)} — ${eur(i.unit_amount)}</li>`).join('')}</ul>
+        <p class="muted small" style="margin-top:10px">Language: ${o.lang} · Terms ${esc(o.terms_version || '—')}<br>Stripe: ${esc(o.stripe_payment_intent || '')}</p></div>
+      <div class="edit"><h3>Update</h3>
+        <select data-k="status">${STATUSES.map(s => `<option value="${s}"${s === o.status ? ' selected' : ''}>${LABEL[s]}</option>`).join('')}</select>
+        <input data-k="tracking_carrier" placeholder="Carrier (e.g. Correos, DHL)" value="${esc(o.tracking_carrier || '')}">
+        <input data-k="tracking_number" placeholder="Tracking number" value="${esc(o.tracking_number || '')}">
+        <textarea data-k="notes" rows="2" placeholder="Internal notes">${esc(o.notes || '')}</textarea>
+        <button class="btn" data-save="${o.id}">Save</button>
+        <p class="muted small">Setting “Shipped” emails the customer their tracking details.</p></div>
+    </div></td></tr>`;
+  }).join('') || '<tr><td colspan="6" class="muted">No orders here yet.</td></tr>';
+  document.querySelectorAll('tr.row').forEach(tr => tr.onclick = () => { openId = openId === tr.dataset.id ? null : tr.dataset.id; render(); });
+  document.querySelectorAll('[data-save]').forEach(b => b.onclick = async () => {
+    const box = b.closest('.edit'), body = { id: b.dataset.save };
+    box.querySelectorAll('[data-k]').forEach(el => body[el.dataset.k] = el.value);
+    b.disabled = true; $('#appMsg').textContent = 'Saving…';
+    const { data: { session } } = await sb.auth.getSession();
+    const r = await fetch('/api/admin/update', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify(body) });
+    $('#appMsg').textContent = r.ok ? 'Saved.' : 'Could not save. Check you are still signed in.';
+    b.disabled = false; if (r.ok) load();
+  });
+}
+
+sb.auth.onAuthStateChange((_e, session) => {
+  $('#login').hidden = !!session; $('#app').hidden = !session;
+  if (session) { $('#who').textContent = session.user.email; load(); }
+});
+</script>
+</body>
+</html>

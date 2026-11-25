@@ -1,0 +1,20 @@
+{
+  "name": "matane-jewellery",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "PREVIEW=1 node build.mjs",
+    "test": "node test/order.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/shippori-mincho": "^5.3.0",
+    "@fontsource/zen-kaku-gothic-new": "^5.3.1",
+    "@supabase/supabase-js": "^2.119.2",
+    "stripe": "^17.0.0",
+    "three": "^0.187.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

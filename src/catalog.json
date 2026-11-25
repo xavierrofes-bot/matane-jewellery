@@ -1,0 +1,715 @@
+{
+ "_note": "Single source of truth for the shop AND the checkout function. Prices are in euro cents, VAT included. PLACEHOLDER prices: replace before going live, then set previewBanner to false.",
+ "currency": "eur",
+ "previewBanner": true,
+ "leadTimeWeeks": "3–4",
+ "shipping": {
+  "freeShipping": true,
+  "countries": [
+   "ES",
+   "PT",
+   "FR",
+   "IT",
+   "DE",
+   "AT",
+   "BE",
+   "NL",
+   "LU",
+   "IE",
+   "DK",
+   "SE",
+   "FI",
+   "PL",
+   "CZ",
+   "SK",
+   "SI",
+   "HR",
+   "HU",
+   "RO",
+   "BG",
+   "GR",
+   "CY",
+   "MT",
+   "EE",
+   "LV",
+   "LT",
+   "GB",
+   "CH",
+   "NO",
+   "JP",
+   "US",
+   "CA"
+  ]
+ },
+ "metals": {
+  "ag": {
+   "label": {
+    "en": "Sterling silver 925",
+    "es": "Plata de ley 925",
+    "ja": "シルバー925"
+   },
+   "short": "925",
+   "swatch": "#E4E4E2"
+  },
+  "wg": {
+   "label": {
+    "en": "14K white gold",
+    "es": "Oro blanco 14K",
+    "ja": "14K ホワイトゴールド"
+   },
+   "short": "14K",
+   "swatch": "#D9DCE0"
+  },
+  "yg": {
+   "label": {
+    "en": "14K yellow gold",
+    "es": "Oro amarillo 14K",
+    "ja": "14K イエローゴールド"
+   },
+   "short": "14K",
+   "swatch": "#D9AE5C"
+  },
+  "wg18": {
+   "label": {
+    "en": "18K white gold",
+    "es": "Oro blanco 18K",
+    "ja": "18K ホワイトゴールド"
+   },
+   "short": "18K",
+   "swatch": "#D6D9DE"
+  },
+  "yg18": {
+   "label": {
+    "en": "18K yellow gold",
+    "es": "Oro amarillo 18K",
+    "ja": "18K イエローゴールド"
+   },
+   "short": "18K",
+   "swatch": "#D9A23E"
+  },
+  "pt": {
+   "label": {
+    "en": "Platinum 950",
+    "es": "Platino 950",
+    "ja": "プラチナ 950"
+   },
+   "short": "Pt",
+   "swatch": "#C9C6C0"
+  }
+ },
+ "metalFileName": {
+  "ag": "sterling-silver",
+  "wg": "14k-white-gold",
+  "yg": "14k-yellow-gold",
+  "wg18": "14k-white-gold",
+  "yg18": "18k-yellow-gold",
+  "pt": "platinum"
+ },
+ "ringSizes": [
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64
+ ],
+ "products": [
+  {
+   "id": "tama-pendant",
+   "collection": "mizuhiki-tama",
+   "slug": "pendant",
+   "imgKey": "mizuhiki-tama-pendant",
+   "views": [
+    "cord",
+    "front",
+    "flat",
+    "macro"
+   ],
+   "needsSize": false,
+   "viewer": "tama",
+   "flagship": true,
+   "prices": {
+    "ag": 13000,
+    "wg": 42000,
+    "yg": 42000,
+    "wg18": 57000,
+    "yg18": 57000,
+    "pt": 62000
+   },
+   "name": {
+    "en": "Mizuhiki Tama Pendant",
+    "es": "Colgante Mizuhiki Tama",
+    "ja": "水引玉 ペンダント"
+   },
+   "about": {
+    "en": "A 10 mm ball of woven cords, each one passing over and under the next until the weave closes on itself, with no beginning and no end. It hangs from a polished bail on a fine jump ring and catches the light from every side.",
+    "es": "Una bola de 10 mm de cordones entrelazados, cada uno pasando por encima y por debajo del siguiente hasta que el tejido se cierra sobre sí mismo, sin principio ni fin. Cuelga de un asa pulida con una fina anilla y recoge la luz por todos sus lados.",
+    "ja": "直径10 mmの玉に、線を一本ずつ上へ下へと編み込み、始まりも終わりもない形に閉じました。磨き上げたバチカンと小さな丸カンで下げ、どの角度からも光をとらえます。"
+   },
+   "specs": {
+    "en": [
+     "Ball approx. 10 mm",
+     "Polished bail and jump ring",
+     "[Shown on a red silk cord: included or sold separately, to confirm]"
+    ],
+    "es": [
+     "Bola de aprox. 10 mm",
+     "Asa y anilla pulidas",
+     "[Se muestra con cordón de seda rojo: incluido o aparte, por confirmar]"
+    ],
+    "ja": [
+     "玉 直径約10 mm",
+     "鏡面仕上げのバチカンと丸カン",
+     "［赤い絹紐は付属か別売りか、要確認］"
+    ]
+   },
+   "worn": {
+    "key": "mizuhiki-tama-pendant",
+    "shots": [
+     {
+      "shot": "close",
+      "metals": [
+       "18k-yellow-gold",
+       "sterling-silver"
+      ]
+     },
+     {
+      "shot": "bust",
+      "metals": [
+       "18k-yellow-gold",
+       "sterling-silver"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ring",
+   "collection": "ume-musubi",
+   "slug": "ring",
+   "imgKey": "ume-musubi-ring",
+   "views": [
+    "hero",
+    "top",
+    "side"
+   ],
+   "needsSize": true,
+   "viewer": "ring",
+   "prices": {
+    "ag": 28000,
+    "wg": 89000,
+    "yg": 89000,
+    "wg18": 120000,
+    "yg18": 120000,
+    "pt": 129000
+   },
+   "name": {
+    "en": "Ume Musubi Ring",
+    "es": "Anillo Ume Musubi",
+    "ja": "梅結び リング"
+   },
+   "specs": {
+    "en": [
+     "Knot face approx. 14 × 14 mm",
+     "Triple-wire band",
+     "Solid, polished finish"
+    ],
+    "es": [
+     "Nudo de aprox. 14 × 14 mm",
+     "Aro de triple hilo",
+     "Macizo, acabado pulido"
+    ],
+    "ja": [
+     "結び部分 約14 × 14 mm",
+     "三本線のアーム",
+     "無垢・鏡面仕上げ"
+    ]
+   },
+   "about": {
+    "en": "The plum-blossom knot sits on a band of three fine wires, the same three cords that form the knot. Polished to a mirror finish, it catches light from every angle of the woven petals.",
+    "es": "El nudo de flor de ciruelo descansa sobre un aro de tres hilos finos, los mismos tres cordones que forman el nudo. Con acabado espejo, recoge la luz en cada pétalo entrelazado.",
+    "ja": "梅結びを支えるのは、結びと同じ三本線のアーム。鏡面に磨き上げ、編み込まれた花びらのどの角度からも光をとらえます。"
+   },
+   "worn": {
+    "key": "ume-musubi-ring",
+    "shots": [
+     {
+      "shot": "display",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "pendant",
+   "collection": "ume-musubi",
+   "slug": "pendant",
+   "imgKey": "ume-musubi-pendant",
+   "views": [
+    "front",
+    "flat"
+   ],
+   "needsSize": false,
+   "viewer": "pendant",
+   "prices": {
+    "ag": 22000,
+    "wg": 69000,
+    "yg": 69000,
+    "wg18": 93000,
+    "yg18": 93000,
+    "pt": 99000
+   },
+   "name": {
+    "en": "Ume Musubi Pendant",
+    "es": "Colgante Ume Musubi",
+    "ja": "梅結び ペンダント"
+   },
+   "specs": {
+    "en": [
+     "Knot approx. 19 × 19 mm",
+     "Polished bail",
+     "On a fine cable chain, [45 cm]"
+    ],
+    "es": [
+     "Nudo de aprox. 19 × 19 mm",
+     "Asa pulida",
+     "Con fina cadena forzada, [45 cm]"
+    ],
+    "ja": [
+     "結び部分 約19 × 19 mm",
+     "鏡面仕上げのバチカン",
+     "細いあずきチェーン付き［45 cm］"
+    ]
+   },
+   "about": {
+    "en": "Five petals of triple cord, woven over and under like a real mizuhiki knot and hung from a polished bail.",
+    "es": "Cinco pétalos de triple cordón que pasan por encima y por debajo como un nudo de mizuhiki real, colgados de un asa pulida. Con fina cadena forzada, [45 cm].",
+    "ja": "三本線を五つの花びらに、本物の水引のように上下に編み込み、磨き上げたバチカンに下げました。"
+   },
+   "worn": {
+    "key": "ume-musubi-pendant",
+    "shots": [
+     {
+      "shot": "close",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     },
+     {
+      "shot": "bust",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ume-bracelet",
+   "collection": "ume-musubi",
+   "slug": "bracelet",
+   "imgKey": "ume-musubi-bracelet",
+   "views": [
+    "flat",
+    "top"
+   ],
+   "needsSize": false,
+   "viewer": "ume-bracelet",
+   "prices": {
+    "ag": 19000,
+    "wg": 59000,
+    "yg": 59000,
+    "wg18": 80000,
+    "yg18": 80000,
+    "pt": 85000
+   },
+   "name": {
+    "en": "Ume Musubi Bracelet",
+    "es": "Pulsera Ume Musubi",
+    "ja": "梅結び ブレスレット"
+   },
+   "about": {
+    "en": "The plum-blossom knot as a bracelet centrepiece, with a small loop on each side for a fine chain. It completes the set with the Ume Musubi ring and pendant.",
+    "es": "El nudo de flor de ciruelo como pieza central de una pulsera, con una pequeña anilla a cada lado para una cadena fina. Completa el conjunto con el anillo y el colgante Ume Musubi.",
+    "ja": "梅結びをブレスレットの中心に。両側の小さなカンに細いチェーンを通します。梅結びのリング、ペンダントと揃えてお使いいただけます。"
+   },
+   "specs": {
+    "en": [
+     "Knot approx. 14 × 14 mm, 19 mm wide with loops",
+     "Fine chain, [length to confirm]",
+     "Solid, polished finish"
+    ],
+    "es": [
+     "Nudo de aprox. 14 × 14 mm, 19 mm de ancho con anillas",
+     "Cadena fina, [longitud por confirmar]",
+     "Macizo, acabado pulido"
+    ],
+    "ja": [
+     "結び部分 約14 × 14 mm（カン含む幅 19 mm）",
+     "細いチェーン［長さ要確認］",
+     "無垢・鏡面仕上げ"
+    ]
+   },
+   "worn": {
+    "key": "ume-musubi-bracelet",
+    "shots": [
+     {
+      "shot": "display",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "awaji-ring",
+   "collection": "awaji-musubi",
+   "slug": "ring",
+   "imgKey": "awaji-musubi-ring",
+   "views": [
+    "hero",
+    "top",
+    "side"
+   ],
+   "needsSize": true,
+   "viewer": "awaji-ring",
+   "prices": {
+    "ag": 27000,
+    "wg": 85000,
+    "yg": 85000,
+    "wg18": 115000,
+    "yg18": 115000,
+    "pt": 125000
+   },
+   "name": {
+    "en": "Awaji Musubi Ring",
+    "es": "Anillo Awaji Musubi",
+    "ja": "淡路結び リング"
+   },
+   "about": {
+    "en": "The awaji knot sits on a band of three fine wires, its two cord ends rising like the tails of a freshly tied mizuhiki. Polished to a mirror finish.",
+    "es": "El nudo awaji descansa sobre un aro de tres hilos finos, con los dos extremos del cordón alzándose como en un mizuhiki recién atado. Con acabado espejo.",
+    "ja": "三本線のアームに淡路結びをのせ、結んだばかりの水引のように両端の線が立ち上がります。鏡面仕上げ。"
+   },
+   "specs": {
+    "en": [
+     "Knot approx. 13 × 13 mm",
+     "Triple-wire band, approx. 2.4 mm wide",
+     "Solid, polished finish"
+    ],
+    "es": [
+     "Nudo de aprox. 13 × 13 mm",
+     "Aro de triple hilo, aprox. 2,4 mm de ancho",
+     "Macizo, acabado pulido"
+    ],
+    "ja": [
+     "結び部分 約13 × 13 mm",
+     "三本線のアーム 幅約2.4 mm",
+     "無垢・鏡面仕上げ"
+    ]
+   },
+   "worn": {
+    "key": "awaji-musubi-ring",
+    "shots": [
+     {
+      "shot": "display",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "shimenawa-pendant",
+   "collection": "shimenawa",
+   "slug": "pendant",
+   "imgKey": "shimenawa-pendant",
+   "views": [
+    "front",
+    "flat"
+   ],
+   "needsSize": false,
+   "viewer": "shimenawa-pendant",
+   "prices": {
+    "ag": 16000,
+    "wg": 49000,
+    "yg": 49000,
+    "wg18": 66000,
+    "yg18": 66000,
+    "pt": 69000
+   },
+   "name": {
+    "en": "Shimenawa Pendant",
+    "es": "Colgante Shimenawa",
+    "ja": "しめ縄 ペンダント"
+   },
+   "about": {
+    "en": "Three strands twisted into a 17 mm circle, like a miniature shrine rope, hung from a polished bail.",
+    "es": "Tres hebras retorcidas en un círculo de 17 mm, como una cuerda de santuario en miniatura, colgado de un asa pulida. Con fina cadena forzada, [45 cm].",
+    "ja": "三本の撚りを直径17 mmの輪にした、小さなしめ縄。磨き上げたバチカンに下げました。"
+   },
+   "specs": {
+    "en": [
+     "Circle approx. 17 mm",
+     "Three twisted strands",
+     "On a fine cable chain, [45 cm]"
+    ],
+    "es": [
+     "Círculo de aprox. 17 mm",
+     "Tres hebras retorcidas",
+     "Con fina cadena forzada, [45 cm]"
+    ],
+    "ja": [
+     "輪 直径約17 mm",
+     "三本撚り",
+     "細いあずきチェーン付き［45 cm］"
+    ]
+   },
+   "worn": {
+    "key": "shimenawa-pendant",
+    "shots": [
+     {
+      "shot": "close",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     },
+     {
+      "shot": "bust",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "shimenawa-bracelet",
+   "collection": "shimenawa",
+   "slug": "bracelet",
+   "imgKey": "shimenawa-bracelet",
+   "views": [
+    "flat",
+    "top"
+   ],
+   "needsSize": false,
+   "viewer": "shimenawa-bracelet",
+   "prices": {
+    "ag": 14000,
+    "wg": 45000,
+    "yg": 45000,
+    "wg18": 61000,
+    "yg18": 61000,
+    "pt": 65000
+   },
+   "name": {
+    "en": "Shimenawa Bracelet",
+    "es": "Pulsera Shimenawa",
+    "ja": "しめ縄 ブレスレット"
+   },
+   "about": {
+    "en": "The twisted-rope circle as a bracelet centrepiece, with a small loop on each side for a fine chain.",
+    "es": "El círculo de cuerda retorcida como pieza central de una pulsera, con una pequeña anilla a cada lado para una cadena fina.",
+    "ja": "撚り縄の輪をブレスレットの中心に。両側の小さなカンに細いチェーンを通します。"
+   },
+   "specs": {
+    "en": [
+     "Circle approx. 17 mm, 20 mm wide with loops",
+     "Fine chain, [length to confirm]",
+     "Three twisted strands"
+    ],
+    "es": [
+     "Círculo de aprox. 17 mm, 20 mm de ancho con anillas",
+     "Cadena fina, [longitud por confirmar]",
+     "Tres hebras retorcidas"
+    ],
+    "ja": [
+     "輪 直径約17 mm（カン含む幅 20 mm）",
+     "細いチェーン［長さ要確認］",
+     "三本撚り"
+    ]
+   },
+   "worn": {
+    "key": "shimenawa-bracelet",
+    "shots": [
+     {
+      "shot": "display",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "shimenawa-earrings",
+   "collection": "shimenawa",
+   "slug": "earrings",
+   "imgKey": "shimenawa-earrings",
+   "views": [
+    "front",
+    "flat"
+   ],
+   "needsSize": false,
+   "viewer": "shimenawa-earrings",
+   "prices": {
+    "ag": 25000,
+    "wg": 79000,
+    "yg": 79000,
+    "wg18": 107000,
+    "yg18": 107000,
+    "pt": 115000
+   },
+   "name": {
+    "en": "Shimenawa Earrings",
+    "es": "Pendientes Shimenawa",
+    "ja": "しめ縄 ピアス"
+   },
+   "about": {
+    "en": "A pair of twisted-rope circles, each hung from a polished cap. Light enough to wear every day.",
+    "es": "Un par de círculos de cuerda retorcida, cada uno colgado de un remate pulido. Ligeros para llevar a diario.",
+    "ja": "撚り縄の輪を、磨き上げたキャップに下げた一対。毎日身につけられる軽さです。"
+   },
+   "specs": {
+    "en": [
+     "Sold as a pair",
+     "Circles approx. 17 mm",
+     "[Ear fitting: hooks or posts, to confirm]"
+    ],
+    "es": [
+     "Se venden por pares",
+     "Círculos de aprox. 17 mm",
+     "[Cierre: gancho o presión, por confirmar]"
+    ],
+    "ja": [
+     "2個1組",
+     "輪 直径約17 mm",
+     "［金具：フックまたはピアス、要確認］"
+    ]
+   },
+   "worn": {
+    "key": "shimenawa-earrings",
+    "shots": [
+     {
+      "shot": "display",
+      "metals": [
+       "18k-yellow-gold"
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "collections": [
+  {
+   "id": "mizuhiki-tama",
+   "kanji": "水引玉",
+   "banner": "mizuhiki-tama-set",
+   "bannerMetal": "mixed",
+   "bannerView": "trio",
+   "cover": [
+    "mizuhiki-tama-pendant",
+    "yg",
+    "macro"
+   ],
+   "name": {
+    "en": "Mizuhiki Tama",
+    "es": "Mizuhiki Tama",
+    "ja": "水引玉"
+   },
+   "lede": {
+    "en": "Cords woven over and under, around and around, until they close into a ball no bigger than a fingertip. Our flagship piece, in silver, gold or platinum.",
+    "es": "Cordones que pasan por encima y por debajo, una y otra vez, hasta cerrarse en una bola no más grande que la yema de un dedo. Nuestra pieza insignia, en plata, oro o platino.",
+    "ja": "上へ下へ、何度も編み重ねた線が、指先ほどの小さな玉に。Matanéを代表する一点を、シルバー、ゴールド、プラチナで。"
+   }
+  },
+  {
+   "id": "ume-musubi",
+   "kanji": "梅結び",
+   "banner": "ume-musubi-set",
+   "name": {
+    "en": "Ume Musubi",
+    "es": "Ume Musubi",
+    "ja": "梅結び"
+   },
+   "lede": {
+    "en": "The plum knot from Japanese mizuhiki, in silver, gold or platinum. Ring, pendant and bracelet, made to order.",
+    "es": "El nudo de ciruelo del mizuhiki japonés, en plata, oro o platino. Anillo, colgante y pulsera, hechos por encargo.",
+    "ja": "水引の梅結びを、シルバー、ゴールド、プラチナで。リング、ペンダント、ブレスレット。すべてご注文後に制作します。"
+   },
+   "cover": [
+    "ume-musubi-ring",
+    "yg",
+    "hero"
+   ],
+   "bannerMetal": "14k-yellow-gold",
+   "bannerView": "group"
+  },
+  {
+   "id": "awaji-musubi",
+   "kanji": "淡路結び",
+   "name": {
+    "en": "Awaji Musubi",
+    "es": "Awaji Musubi",
+    "ja": "淡路結び"
+   },
+   "lede": {
+    "en": "The first knot every mizuhiki maker learns. Pull its ends and it only tightens, which is why it is tied for bonds meant to last a lifetime.",
+    "es": "El primer nudo que aprende todo artesano del mizuhiki. Si tiras de sus extremos, solo se aprieta más: por eso se ata para los lazos que han de durar toda la vida.",
+    "ja": "水引で最初に覚える、すべての結びの基本。両端を引くほど固く締まることから、末永く続く絆を願って結ばれてきました。"
+   },
+   "cover": [
+    "awaji-musubi-ring",
+    "yg",
+    "top"
+   ]
+  },
+  {
+   "id": "shimenawa",
+   "kanji": "しめ縄",
+   "name": {
+    "en": "Shimenawa",
+    "es": "Shimenawa",
+    "ja": "しめ縄"
+   },
+   "lede": {
+    "en": "Inspired by the twisted rope that marks sacred places at Japanese shrines and keeps misfortune out. Three strands, twisted into a circle.",
+    "es": "Inspirada en la cuerda trenzada que marca los lugares sagrados de los santuarios japoneses y aleja la desgracia. Tres hebras retorcidas en un círculo.",
+    "ja": "神社で神聖な場所を示し、災いを遠ざけるとされる撚り縄から着想を得ました。三本の撚りを、ひとつの輪に。"
+   },
+   "cover": [
+    "shimenawa-pendant",
+    "yg",
+    "front"
+   ]
+  }
+ ],
+ "business": {
+  "_note": "Seller details shown on the legal pages, in emails and on invoices. Fill every [bracket] before launch.",
+  "name": "Asaka Suzuki",
+  "tradeName": "Matane Jewellery",
+  "taxId": "[NIF]",
+  "address": "[Street, number, postcode] Barcelona, Spain",
+  "email": "hello@matanejewellery.com",
+  "phone": "[+34 …]",
+  "domain": "matanejewellery.com",
+  "termsVersion": "2026-11-23"
+ }
+}
